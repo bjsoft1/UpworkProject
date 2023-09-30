@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpworkProject.Web", "UpworkProject.Web\UpworkProject.Web.csproj", "{7CCBFA7E-F30B-44E3-9442-E4B9078C574B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpworkProject.Web", "UpworkProject.Web\UpworkProject.Web.csproj", "{7CCBFA7E-F30B-44E3-9442-E4B9078C574B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpworkProject.Models", "UpworkProject.Models\UpworkProject.Models.csproj", "{8A2513E3-468E-4AE7-BF11-F5E342B605A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpworkProject.Models", "UpworkProject.Models\UpworkProject.Models.csproj", "{8A2513E3-468E-4AE7-BF11-F5E342B605A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpworkProject.Services", "UpworkProject.Services\UpworkProject.Services.csproj", "{334CA2CF-B69C-42D3-A2CF-6146D59D2B11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpworkProject.Services", "UpworkProject.Services\UpworkProject.Services.csproj", "{334CA2CF-B69C-42D3-A2CF-6146D59D2B11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpworkProject.Commons", "UpworkProject.Commons\UpworkProject.Commons.csproj", "{6AB21EDA-8947-4F57-A159-152425CBFE12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpworkProject.Commons", "UpworkProject.Commons\UpworkProject.Commons.csproj", "{6AB21EDA-8947-4F57-A159-152425CBFE12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpworkProject.Repositories", "UpworkProject.Repositories\UpworkProject.Repositories.csproj", "{A5BF55FC-2E33-47E6-8E2E-1AB717537E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpworkProject.Repositories", "UpworkProject.Repositories\UpworkProject.Repositories.csproj", "{A5BF55FC-2E33-47E6-8E2E-1AB717537E3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
