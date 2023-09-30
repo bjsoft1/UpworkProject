@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UpworkProject.Services.Database;
+using UpworkProject.Repositories.Database;
 
 #nullable disable
 
-namespace UpworkProject.Services.Migrations
+namespace UpworkProject.Repositories.Migrations
 {
     [DbContext(typeof(ProjectDatabaseContext))]
     partial class ProjectDatabaseContextModelSnapshot : ModelSnapshot
@@ -24,11 +24,11 @@ namespace UpworkProject.Services.Migrations
 
             modelBuilder.Entity("UpworkProject.Models.DynamicControls.DynamicControl", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<string>("ControlIdentity")
                         .IsRequired()
@@ -37,14 +37,18 @@ namespace UpworkProject.Services.Migrations
                     b.Property<int>("ControlType")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("LabelDate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OptionsSerialized")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Options");
+                    b.Property<DateTime?>("LastUpdateDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Options")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OrderNumber")
                         .HasColumnType("int");
@@ -62,8 +66,8 @@ namespace UpworkProject.Services.Migrations
                             Id = 1,
                             ControlIdentity = "FullName",
                             ControlType = 0,
+                            CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LabelDate = "What is your name?",
-                            OptionsSerialized = "",
                             OrderNumber = 1,
                             Status = 0
                         },
@@ -72,8 +76,9 @@ namespace UpworkProject.Services.Migrations
                             Id = 2,
                             ControlIdentity = "Gender",
                             ControlType = 2,
+                            CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LabelDate = "What is your gender?",
-                            OptionsSerialized = "Male,Female",
+                            Options = "Male,Female",
                             OrderNumber = 2,
                             Status = 0
                         },
@@ -82,8 +87,9 @@ namespace UpworkProject.Services.Migrations
                             Id = 3,
                             ControlIdentity = "Hobbies",
                             ControlType = 1,
+                            CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LabelDate = "What is your hobbies?",
-                            OptionsSerialized = "Music,Movies,Sports",
+                            Options = "Music,Movies,Sports",
                             OrderNumber = 3,
                             Status = 0
                         },
@@ -92,8 +98,9 @@ namespace UpworkProject.Services.Migrations
                             Id = 4,
                             ControlIdentity = "Country",
                             ControlType = 3,
+                            CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LabelDate = "What is your country name?",
-                            OptionsSerialized = "Nepal,India,China,USA,Korea,Japan,Pakistan",
+                            Options = "Nepal,India,China,USA,Korea,Japan,Pakistan",
                             OrderNumber = 4,
                             Status = 0
                         },
@@ -102,8 +109,8 @@ namespace UpworkProject.Services.Migrations
                             Id = 5,
                             ControlIdentity = "CurrentDateTime",
                             ControlType = 4,
+                            CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LabelDate = "What is your current date time?",
-                            OptionsSerialized = "",
                             OrderNumber = 5,
                             Status = 0
                         },
@@ -112,8 +119,8 @@ namespace UpworkProject.Services.Migrations
                             Id = 6,
                             ControlIdentity = "CurrentDate",
                             ControlType = 5,
+                            CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LabelDate = "What is your current date?",
-                            OptionsSerialized = "",
                             OrderNumber = 6,
                             Status = 0
                         },
@@ -122,8 +129,8 @@ namespace UpworkProject.Services.Migrations
                             Id = 7,
                             ControlIdentity = "CurrentTime",
                             ControlType = 6,
+                            CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LabelDate = "What is your current time?",
-                            OptionsSerialized = "",
                             OrderNumber = 7,
                             Status = 0
                         },
@@ -132,8 +139,8 @@ namespace UpworkProject.Services.Migrations
                             Id = 8,
                             ControlIdentity = "Message",
                             ControlType = 7,
+                            CreationTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LabelDate = "What is your message for us?",
-                            OptionsSerialized = "",
                             OrderNumber = 8,
                             Status = 0
                         });
@@ -150,6 +157,9 @@ namespace UpworkProject.Services.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("CurrentDate")
                         .HasColumnType("datetime2");
 
@@ -165,10 +175,11 @@ namespace UpworkProject.Services.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HobbiesSerialized")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Hobbies");
+                    b.Property<string>("Hobbies")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastUpdateDateTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");

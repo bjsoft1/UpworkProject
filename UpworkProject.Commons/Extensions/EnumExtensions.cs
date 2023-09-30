@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Reflection;
-using UpworkProject.Dtos.Commons;
+using UpworkProject.Commons.Dtos;
 
 namespace UpworkProject.Commons.Extensions
 {
@@ -10,17 +10,25 @@ namespace UpworkProject.Commons.Extensions
         {
             return value.GetType().GetMember(value.ToString())[0].GetCustomAttribute<DisplayAttribute>()?.GetName() ?? value.ToString();
         }
+        public static EnumDto GetValueDto(this Enum value) 
+        {
+            return new EnumDto
+            {
+                DisplayName = value.GetType().GetMember(value.ToString())[0].GetCustomAttribute<DisplayAttribute>()?.GetName() ?? value.ToString(),
+                Id = value.GetValue(),
+            };
+             ;
+        }
         public static int GetValue(this Enum value)
         {
             return Convert.ToInt32(value);
         }
-        public static List<EnumDto<T>> GetEnumVeriableList<T>() where T : Enum
+        public static List<EnumDto> GetEnumVeriableList<T>() where T : Enum
         {
             return Enum.GetValues(typeof(T))
                        .OfType<T>()
-                       .Select(e => new EnumDto<T>
+                       .Select(e => new EnumDto
                        {
-                           Value = e,
                            DisplayName = e.ToString(),
                            Id = Convert.ToInt32(e)
                        }).ToList();

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UpworkProject.Commons\UpworkProject.Commons.csproj" />
+    <ProjectReference Include="..\UpworkProject.Dtos\UpworkProject.Dtos.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UpworkProject.Commons\UpworkProject.Commons.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,4 @@
 ﻿@using UpworkProject.Commons.EnumClass;
-@using UpworkProject.Dtos.Commons;
 @{
     ViewData["Title"] = "Home Page";
     Layout = "_Layout";
@@ -35,7 +34,7 @@
                 <select class="input-select" name="ControlType" onchange="OnControlTypeChange()" id="ControlType" required>
                     <option selected>-- Select --</option>
                     @{
-                        foreach (var c in TempData["ControlTypes"] as List<EnumDto<EDynamicControlTypes>> ?? new List<EnumDto<EDynamicControlTypes>>())
+                        foreach (var c in TempData["ControlTypes"] as List<UpworkProject.Commons.Dtos.EnumDto> ?? new List<UpworkProject.Commons.Dtos.EnumDto>())
                         {
                             <option value="@c.Id">@c.DisplayName</option>
                         }

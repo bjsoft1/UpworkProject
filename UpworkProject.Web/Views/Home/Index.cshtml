@@ -1,5 +1,5 @@
 ﻿@using UpworkProject.Commons.EnumClass;
-@model List<UpworkProject.Models.DynamicControls.DynamicControl>
+@model List<UpworkProject.Dtos.DynamicControls.DynamicControlAddUpdateDto>
 @{
     ViewData["Title"] = "Home Page";
     Layout = "_Layout";
@@ -24,13 +24,14 @@
 
 <div class="container container-form">
     <h1>Submit Your Informations</h1>
-    <form method="post" action="/Home/SubmitForm" >
+    <form method="post" action="/Home/AddParticipaint">
         @{
         @if(Model.Any())
         {
                 foreach (var d in Model.OrderBy(x => x.OrderNumber))
                 {
-                    switch (d.ControlType)
+                    var type = (EDynamicControlTypes)(d.ControlType);
+                    switch (type)
                     {
                         case EDynamicControlTypes.DateTimePicker:
                             {
@@ -118,7 +119,7 @@
                                     <div class="input-group">
                                         <label>@d.LabelDate</label>
                                         <select name="@d.ControlIdentity" class="input-select" id="@d.ControlIdentity">
-                                            <option>-- Select --</option>
+                                            <option selected disabled value="">-- Select --</option>
                                             @foreach (var c in d.Options ?? new List<string>())
                                             {
                                                 <option value="@c">@c</option>

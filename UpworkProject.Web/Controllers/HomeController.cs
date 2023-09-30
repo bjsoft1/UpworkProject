@@ -1,31 +1,42 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UpworkProject.Commons.EnumClass;
 using UpworkProject.Commons.Extensions;
+using UpworkProject.Dtos.DynamicControls;
+using UpworkProject.Dtos.ParticipaintInformations;
 using UpworkProject.Models.DynamicControls;
-using UpworkProject.Services.Database;
+using UpworkProject.Repositories.DynamicControls;
+using UpworkProject.Services.DynamicControls;
+using UpworkProject.Services.ParticipaintInformations;
 
 namespace UpworkProject.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ProjectDatabaseContext _dataBase;
-        public HomeController(ProjectDatabaseContext dataBase)
+        private readonly IDynamicControlsRepositories _dynamicControlsRepositories;
+        private readonly IDynamicControlAppService _dynamicControlAppService;
+        private readonly IParticipaintInformationsAppService _participaintInformationsAppService;
+        public HomeController(IDynamicControlsRepositories dynamicControlsRepositories,
+            IDynamicControlAppService dynamicControlAppService,
+            IParticipaintInformationsAppService participaintInformationsAppService)
         {
-            _dataBase = dataBase;
+            _dynamicControlsRepositories = dynamicControlsRepositories;
+            _dynamicControlAppService = dynamicControlAppService;
+            _participaintInformationsAppService = participaintInformationsAppService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var data = _dataBase.DynamicControls.Where(x=> x.Status == Commons.EnumClass.EDataStatus.Active).ToList();
+            var data = await _dynamicControlsRepositories.GetDynamicControlListing();
             return View(model: data);
         }
         [HttpPost]
-        public async Task<IActionResult> SubmitForm(ParticipaintInformation participaintInformation)
+        public async Task<IActionResult> AddParticipaint(ParticipaintInformationsAddUpdateDto participaintInformation)
         {
             try
             {
-                var data = await _dataBase.ParticipaintInformations.AddAsync(participaintInformation);
-                await _dataBase.SaveChangesAsync();
-                TempData["Success"] = $"Successfully Submited. ID:{data.Entity.Id}";
+                var data = await _participaintInformationsAppService.AddParticipaintInformation(participaintInformation);
+                await _participaintInformationsAppService.CurrentUnitSaveChangeAsync();
+                
+                TempData["Success"] = $"Successfully Submited. ID:{data.Id}";
                 return RedirectToAction("", "Home");
             }
             catch (Exception ex)
@@ -41,13 +52,14 @@ namespace UpworkProject.Web.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> AddDynamicControl(DynamicControl dynamicControl)
+        public async Task<IActionResult> AddDynamicControl(DynamicControlAddUpdateDto dynamicControl)
         {
             try
             {
-                var data = await _dataBase.DynamicControls.AddAsync(dynamicControl);
-                await _dataBase.SaveChangesAsync();
-                TempData["Success"] = $"Successfully Submited. ID: {data.Entity.Id}";
+                var data = await _dynamicControlAppService.AddDyanmicControl(dynamicControl);
+                await _dynamicControlAppService.CurrentUnitSaveChangeAsync();
+
+                TempData["Success"] = $"Successfully Submited. ID: {data.Id}";
                 return RedirectToAction("AddDynamicInput", "Home");
 
             }
