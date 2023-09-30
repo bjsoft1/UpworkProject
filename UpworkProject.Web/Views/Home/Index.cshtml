@@ -1,27 +1,132 @@
-﻿@{
+﻿@using UpworkProject.Commons.EnumClass;
+@model List<UpworkProject.Models.DynamicControls.DynamicControl>
+@{
     ViewData["Title"] = "Home Page";
     Layout = "_Layout";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="input-group">
-            <label>What is your name?</label>
-            <input type="text" name="fullName" class="tx-input" , id="fullName" />
+<div class="container container-form">
+    <form method="post" action="/Home/SubmitForm" >
+        @{
+        @if(Model.Any())
+        {
+                foreach (var d in Model.OrderBy(x => x.OrderNumber))
+                {
+                    switch (d.ControlType)
+                    {
+                        case EDynamicControlTypes.DateTimePicker:
+                            {
+                                <div class="row">
+                                    <div class="input-group">
+                                        <label>@d.LabelDate</label>
+                                        <input type="datetime" name="@d.ControlIdentity" class="input-datetime" , id="@d.ControlIdentity" />
+                                    </div>
+                                </div>
+                                break;
+                            }
+                        case EDynamicControlTypes.DatePicker:
+                            {
+                                <div class="row">
+                                    <div class="input-group">
+                                        <label>@d.LabelDate</label>
+                                        <input type="date" name="@d.ControlIdentity" class="input-date" , id="@d.ControlIdentity" />
+                                    </div>
+                                </div>
+                                break;
+                            }
+                        case EDynamicControlTypes.TimePicker:
+                            {
+                                <div class="row">
+                                    <div class="input-group">
+                                        <label>@d.LabelDate</label>
+                                        <input type="time" name="@d.ControlIdentity" class="input-time" , id="@d.ControlIdentity" />
+                                    </div>
+                                </div>
+                                break;
+                            }
+                        case EDynamicControlTypes.TextBox:
+                            {
+                                <div class="row">
+                                    <div class="input-group">
+                                        <label>@d.LabelDate</label>
+                                        <input type="text" name="@d.ControlIdentity" class="input-text" , id="@d.ControlIdentity" />
+                                    </div>
+                                </div>
+                                break;
+                            }
+                        case EDynamicControlTypes.CheckBox:
+                            {
+                                <div class="row">
+                                    <div class="input-group">
+                                        <label>@d.LabelDate</label>
+                                        @{
+                                            int i = 0;
+                                        }
+                                        @foreach (var c in d.Options ?? new List<string>())
+                                        {
+                                            i++;
+                                            <div class="flex-column">
+                                                <input type="checkbox" value="@c" name="@d.ControlIdentity" class="input-checkbox" , id="@(d.ControlIdentity + i)" />
+                                                <label for="@(d.ControlIdentity + i)">@c</label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                break;
+                            }
+                        case EDynamicControlTypes.RadioButton:
+                            {
+                                <div class="row">
+                                    <div class="input-group">
+                                        <label>@d.LabelDate</label>
+                                        @{
+                                            int i = 0;
+                                        }
+                                        @foreach (var c in d.Options ?? new List<string>())
+                                        {
+                                            i++;
+                                            <div class="flex-column">
+                                                <input type="radio" value="@c" name="@d.ControlIdentity" class="input-radio" , id="@(d.ControlIdentity + i)" />
+                                                <label for="@(d.ControlIdentity + i)">@c</label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                break;
+                            }
+                        case EDynamicControlTypes.SelectionBox:
+                            {
+                                <div class="row">
+                                    <div class="input-group">
+                                        <label>@d.LabelDate</label>
+                                        <select name="@d.ControlIdentity" class="input-select" , id="@d.ControlIdentity">
+                                            @foreach (var c in d.Options ?? new List<string>())
+                                            {
+                                                <option value="@c">@c</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                break;
+                            }
+                        case EDynamicControlTypes.DescritionsBox:
+                            {
+                                <div class="row">
+                                    <div class="input-group">
+                                        <label>@d.LabelDate</label>
+                                        <textarea type="date" name="@d.ControlIdentity" class="input-textarea" , id="@d.ControlIdentity"></textarea>
+                                    </div>
+                                </div>
+                                break;
+                            }
+                    }
+                }
+            }
+        }
+        <div class="row">
+            <div class="input-group">
+                <input type="submit" name="submit" class="input-submit" , id="submit"/>
+            </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="input-group">
-            <label>What is your name?</label>
-            <input type="text" name="fullName" class="tx-input" , id="fullName" />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="input-group">
-            <label>What is your name?</label>
-            <input type="text" name="fullName" class="tx-input" , id="fullName" />
-        </div>
-    </div>
+    </form>
 </div>

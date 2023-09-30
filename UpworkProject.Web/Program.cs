@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using UpworkProject.Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
