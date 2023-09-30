@@ -9,7 +9,6 @@ namespace UpworkProject.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Entity Id { get; set; }
-        public bool IsActive { get; set; }
         public EDataStatus Status { get; set; }
     }
 }
