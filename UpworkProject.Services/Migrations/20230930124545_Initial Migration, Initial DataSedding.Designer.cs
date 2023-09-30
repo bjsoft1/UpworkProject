@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UpworkProject.Services.Database;
 
@@ -10,9 +11,10 @@ using UpworkProject.Services.Database;
 namespace UpworkProject.Services.Migrations
 {
     [DbContext(typeof(ProjectDatabaseContext))]
-    partial class ProjectDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230930124545_Initial Migration, Initial DataSedding")]
+    partial class InitialMigrationInitialDataSedding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,7 +74,7 @@ namespace UpworkProject.Services.Migrations
                             ControlIdentity = "Gender",
                             ControlType = 2,
                             LabelDate = "What is your gender?",
-                            OptionsSerialized = "Male,Female",
+                            OptionsSerialized = "",
                             OrderNumber = 2,
                             Status = 0
                         },
@@ -82,7 +84,7 @@ namespace UpworkProject.Services.Migrations
                             ControlIdentity = "Hobbies",
                             ControlType = 1,
                             LabelDate = "What is your hobbies?",
-                            OptionsSerialized = "Music,Movies,Sports",
+                            OptionsSerialized = "",
                             OrderNumber = 3,
                             Status = 0
                         });

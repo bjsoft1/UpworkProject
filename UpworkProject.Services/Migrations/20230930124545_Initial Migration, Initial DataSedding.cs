@@ -4,7 +4,7 @@
 
 namespace UpworkProject.Services.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigrationInitialDataSedding : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,13 +19,27 @@ namespace UpworkProject.Services.Migrations
                     LabelDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ControlType = table.Column<int>(type: "int", nullable: false),
                     Options = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DynamicControls", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "DynamicControls",
+                columns: new[] { "Id", "ControlIdentity", "ControlType", "LabelDate", "Options", "OrderNumber", "Status" },
+                values: new object[] { 1, "FullName", 0, "What is your name?", "", 1, 0 });
+
+            migrationBuilder.InsertData(
+                table: "DynamicControls",
+                columns: new[] { "Id", "ControlIdentity", "ControlType", "LabelDate", "Options", "OrderNumber", "Status" },
+                values: new object[] { 2, "Gender", 2, "What is your gender?", "", 2, 0 });
+
+            migrationBuilder.InsertData(
+                table: "DynamicControls",
+                columns: new[] { "Id", "ControlIdentity", "ControlType", "LabelDate", "Options", "OrderNumber", "Status" },
+                values: new object[] { 3, "Hobbies", 1, "What is your hobbies?", "", 3, 0 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

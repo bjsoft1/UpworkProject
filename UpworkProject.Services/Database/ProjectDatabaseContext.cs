@@ -21,14 +21,14 @@ namespace UpworkProject.Services.Database
             modelBuilder.Entity<DynamicControl>(entity =>
             {
                 entity.ToTable(nameof(DynamicControls));
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.Id).UseIdentityColumn(seed: 1, increment: 1);
+                entity.Property(e => e.Id).UseIdentityColumn(seed: 1, increment: 1).HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn); ;
                 entity.Property(e => e.OrderNumber).IsRequired();
                 entity.Property(e => e.ControlIdentity).IsRequired();
                 entity.Property(e => e.LabelDate).IsRequired();
                 entity.Property(e => e.OptionsSerialized).HasColumnName("Options");
             });
 
+            this.SeedingDate(modelBuilder);
         }
         private void SeedingDate(ModelBuilder modelBuilder)
         {
@@ -40,9 +40,9 @@ namespace UpworkProject.Services.Database
         {
             return new List<DynamicControl>
             {
-                new DynamicControl { ControlIdentity = "FullName", ControlType = EDynamicControlTypes.TextBox, LabelDate = "What is your name?", OrderNumber = 1, Status = EDataStatus.Active},
-                new DynamicControl { ControlIdentity = "Gender", ControlType = EDynamicControlTypes.RadioButton, LabelDate = "What is your gender?", OrderNumber = 2, Status = EDataStatus.Active},
-                new DynamicControl { ControlIdentity = "Hobbies", ControlType = EDynamicControlTypes.CheckBox, LabelDate = "What is your hobbies?", OrderNumber = 3, Status = EDataStatus.Active},
+                new DynamicControl { Id = 1, ControlIdentity = "FullName", ControlType = EDynamicControlTypes.TextBox, LabelDate = "What is your name?", OrderNumber = 1, Status = EDataStatus.Active},
+                new DynamicControl { Id = 2, ControlIdentity = "Gender", ControlType = EDynamicControlTypes.RadioButton, LabelDate = "What is your gender?", OrderNumber = 2, Status = EDataStatus.Active, Options = new List<string> { "Male", "Female" }},
+                new DynamicControl { Id = 3, ControlIdentity = "Hobbies", ControlType = EDynamicControlTypes.CheckBox, LabelDate = "What is your hobbies?", OrderNumber = 3, Status = EDataStatus.Active, Options = new List<string> { "Music", "Movies" ,"Sports" } },
             };
         }
     }

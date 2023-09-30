@@ -11,8 +11,8 @@ using UpworkProject.Services.Database;
 namespace UpworkProject.Services.Migrations
 {
     [DbContext(typeof(ProjectDatabaseContext))]
-    [Migration("20230930115451_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20230930125002_Initial DataSedding")]
+    partial class InitialDataSedding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,9 +38,6 @@ namespace UpworkProject.Services.Migrations
                     b.Property<int>("ControlType")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
                     b.Property<string>("LabelDate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -59,6 +56,38 @@ namespace UpworkProject.Services.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DynamicControls", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ControlIdentity = "FullName",
+                            ControlType = 0,
+                            LabelDate = "What is your name?",
+                            OptionsSerialized = "",
+                            OrderNumber = 1,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ControlIdentity = "Gender",
+                            ControlType = 2,
+                            LabelDate = "What is your gender?",
+                            OptionsSerialized = "Male,Female",
+                            OrderNumber = 2,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ControlIdentity = "Hobbies",
+                            ControlType = 1,
+                            LabelDate = "What is your hobbies?",
+                            OptionsSerialized = "Music,Movies,Sports",
+                            OrderNumber = 3,
+                            Status = 0
+                        });
                 });
 #pragma warning restore 612, 618
         }

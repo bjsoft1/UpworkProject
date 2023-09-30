@@ -16,8 +16,8 @@ namespace UpworkProject.Models.DynamicControls
         public List<string> Options { get; set; }
         public string OptionsSerialized
         {
-            get => string.Join(',', Options);
-            set => Options = value.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
+            get => Options != null ? string.Join(',', Options) : "";
+            set => Options = value?.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList() ?? new List<string>();
         }
     }
     //public class DynamicControlOption : BaseModel<int>
