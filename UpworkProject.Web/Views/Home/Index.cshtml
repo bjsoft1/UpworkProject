@@ -23,6 +23,7 @@
 <br />
 
 <div class="container container-form">
+    <h1>Submit Your Informations</h1>
     <form method="post" action="/Home/SubmitForm" >
         @{
         @if(Model.Any())
@@ -117,6 +118,7 @@
                                     <div class="input-group">
                                         <label>@d.LabelDate</label>
                                         <select name="@d.ControlIdentity" class="input-select" id="@d.ControlIdentity">
+                                            <option>-- Select --</option>
                                             @foreach (var c in d.Options ?? new List<string>())
                                             {
                                                 <option value="@c">@c</option>
