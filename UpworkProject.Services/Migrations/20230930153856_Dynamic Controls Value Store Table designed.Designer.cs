@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UpworkProject.Services.Database;
 
@@ -11,9 +12,10 @@ using UpworkProject.Services.Database;
 namespace UpworkProject.Services.Migrations
 {
     [DbContext(typeof(ProjectDatabaseContext))]
-    partial class ProjectDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230930153856_Dynamic Controls Value Store Table designed")]
+    partial class DynamicControlsValueStoreTabledesigned
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

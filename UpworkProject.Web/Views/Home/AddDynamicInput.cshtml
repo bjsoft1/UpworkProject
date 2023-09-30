@@ -1,0 +1,123 @@
+﻿@using UpworkProject.Commons.EnumClass;
+@using UpworkProject.Dtos.Commons;
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+
+<div class="container container-form">
+    <form method="post" action="/Home/AddDynamicControl" >
+        <h1>Add Dynamic Controls</h1>
+        <div class="row">
+            <div class="input-group">
+                <label>Page Order</label>
+                <input type="number" name="OrderNumber" min="0" max="999" class="input-text" id="OrderNumber" value="0" required/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-group">
+                <label>Input Identity</label>
+                <input type="text" name="ControlIdentity" class="input-text" id="ControlIdentity" required/>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-group">
+                <label>Input Label</label>
+                <input type="text" name="LabelDate" class="input-text" id="LabelDate" required />
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="input-group">
+                <label>Control Type</label>
+                <select class="input-select" name="ControlType" onchange="OnControlTypeChange()" id="ControlType" required>
+                    <option selected>-- Select --</option>
+                    @{
+                        foreach (var c in TempData["ControlTypes"] as List<EnumDto<EDynamicControlTypes>> ?? new List<EnumDto<EDynamicControlTypes>>())
+                        {
+                            <option value="@c.Id">@c.DisplayName</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div id="div-options">
+        </div>
+        <input onclick="AddInput()" type="button" id="btn-add-input" class="input-small" value="Add More" />
+
+        <div class="row">
+            <div class="input-group">
+                <input type="submit" name="submit" class="input-submit" id="submit"/>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    var inputCounter = 0;
+    function RemoveInput(id) {
+    document.getElementById(id).remove();
+    }
+    function AddInput() {
+        inputCounter++;
+        const container = document.createElement('div');
+        container.id = 'Options-div' + inputCounter;
+        container.className = 'row';
+
+        const inputGroup = document.createElement('div');
+        inputGroup.className = 'input-group';
+
+        const label = document.createElement('label');
+        label.innerText = 'Options ' + (inputCounter < 10 ? '0' : '') + inputCounter;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'Options';
+        input.className = 'input-text';
+
+        input.required = true;
+
+        const closeButton = document.createElement('input');
+        closeButton.type = 'button';
+        closeButton.className = 'btn-close';
+        closeButton.value = 'X';
+        closeButton.onclick = function () {
+            RemoveInput(container.id);
+        };
+
+        inputGroup.appendChild(label);
+        inputGroup.appendChild(input);
+        inputGroup.appendChild(closeButton);
+        container.appendChild(inputGroup);
+
+        document.getElementById('div-options').appendChild(container);
+    }
+    function OnControlTypeChange() {
+        const type = document.getElementById('ControlType').value;
+        const div = document.getElementById('div-options');
+        const inputs = div.getElementsByTagName('input'); 
+        const buttons = document.getElementById('btn-add-input');
+
+        if (type == 1 || type == 2 || type == 3) {
+            buttons.style.opacity = "1";
+            div.style.opacity = "1";
+            div.style.pointerEvents = "auto";
+            buttons.disabled = false;
+            for (let input of inputs) {
+                input.disabled = false;
+            }
+        } else {
+            div.style.opacity = "0.3";
+            buttons.style.opacity = "0.3";
+            buttons.disabled = true;
+            div.style.pointerEvents = "none";
+
+            for (let input of inputs) {
+                input.disabled = true;
+            }
+        }
+    }
+    OnControlTypeChange();
+</script>

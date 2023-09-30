@@ -19,7 +19,7 @@
                                 <div class="row">
                                     <div class="input-group">
                                         <label>@d.LabelDate</label>
-                                        <input type="datetime" name="@d.ControlIdentity" class="input-datetime" , id="@d.ControlIdentity" />
+                                        <input type="datetime" name="@d.ControlIdentity" class="input-datetime" id="@d.ControlIdentity" />
                                     </div>
                                 </div>
                                 break;
@@ -29,7 +29,7 @@
                                 <div class="row">
                                     <div class="input-group">
                                         <label>@d.LabelDate</label>
-                                        <input type="date" name="@d.ControlIdentity" class="input-date" , id="@d.ControlIdentity" />
+                                        <input type="date" name="@d.ControlIdentity" class="input-date" id="@d.ControlIdentity" />
                                     </div>
                                 </div>
                                 break;
@@ -39,7 +39,7 @@
                                 <div class="row">
                                     <div class="input-group">
                                         <label>@d.LabelDate</label>
-                                        <input type="time" name="@d.ControlIdentity" class="input-time" , id="@d.ControlIdentity" />
+                                        <input type="time" name="@d.ControlIdentity" class="input-time" id="@d.ControlIdentity" />
                                     </div>
                                 </div>
                                 break;
@@ -49,7 +49,7 @@
                                 <div class="row">
                                     <div class="input-group">
                                         <label>@d.LabelDate</label>
-                                        <input type="text" name="@d.ControlIdentity" class="input-text" , id="@d.ControlIdentity" />
+                                        <input type="text" name="@d.ControlIdentity" class="input-text" id="@d.ControlIdentity" />
                                     </div>
                                 </div>
                                 break;
@@ -66,7 +66,7 @@
                                         {
                                             i++;
                                             <div class="flex-column">
-                                                <input type="checkbox" value="@c" name="@d.ControlIdentity" class="input-checkbox" , id="@(d.ControlIdentity + i)" />
+                                                <input type="checkbox" value="@c" name="@d.ControlIdentity" class="input-checkbox" id="@(d.ControlIdentity + i)" />
                                                 <label for="@(d.ControlIdentity + i)">@c</label>
                                             </div>
                                         }
@@ -86,7 +86,7 @@
                                         {
                                             i++;
                                             <div class="flex-column">
-                                                <input type="radio" value="@c" name="@d.ControlIdentity" class="input-radio" , id="@(d.ControlIdentity + i)" />
+                                                <input type="radio" value="@c" name="@d.ControlIdentity" class="input-radio" id="@(d.ControlIdentity + i)" />
                                                 <label for="@(d.ControlIdentity + i)">@c</label>
                                             </div>
                                         }
@@ -99,7 +99,7 @@
                                 <div class="row">
                                     <div class="input-group">
                                         <label>@d.LabelDate</label>
-                                        <select name="@d.ControlIdentity" class="input-select" , id="@d.ControlIdentity">
+                                        <select name="@d.ControlIdentity" class="input-select" id="@d.ControlIdentity">
                                             @foreach (var c in d.Options ?? new List<string>())
                                             {
                                                 <option value="@c">@c</option>
@@ -114,7 +114,7 @@
                                 <div class="row">
                                     <div class="input-group">
                                         <label>@d.LabelDate</label>
-                                        <textarea type="date" name="@d.ControlIdentity" class="input-textarea" , id="@d.ControlIdentity"></textarea>
+                                        <textarea type="date" name="@d.ControlIdentity" class="input-textarea" id="@d.ControlIdentity"></textarea>
                                     </div>
                                 </div>
                                 break;
@@ -125,8 +125,22 @@
         }
         <div class="row">
             <div class="input-group">
-                <input type="submit" name="submit" class="input-submit" , id="submit"/>
+                <input type="submit" name="submit" class="input-submit" id="submit"/>
             </div>
         </div>
     </form>
+</div>
+
+<div class="container ">
+    <h3>NOTE: This is Dynamic Input fields system.</h3>
+    <br />
+    <ul>
+        <li>When you added new row in <b>DynamicControls</b> Table then, automatic show controls here<b>(Top Form)</b>.</li>
+        <li>If you want to store value for you added new <b>Row(Input Fileds)</b> you need to make columns in <b>ParticipaintInformation</b> model</li>
+    </ul>
+    <br />
+    <br />
+    <button class="input-submit"><a href="/AddDynamicInput">Add More Dynamic Input</a></button>
+    <br />
+    <br />
 </div>

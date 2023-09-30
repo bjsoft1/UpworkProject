@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpworkProject.Commons", "Up
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpworkProject.Repositories", "UpworkProject.Repositories\UpworkProject.Repositories.csproj", "{A5BF55FC-2E33-47E6-8E2E-1AB717537E3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpworkProject.Dtos", "UpworkProject.Dtos\UpworkProject.Dtos.csproj", "{DDC8A01B-96B2-4FBA-9A4B-59CEA9896DD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A5BF55FC-2E33-47E6-8E2E-1AB717537E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5BF55FC-2E33-47E6-8E2E-1AB717537E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5BF55FC-2E33-47E6-8E2E-1AB717537E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDC8A01B-96B2-4FBA-9A4B-59CEA9896DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC8A01B-96B2-4FBA-9A4B-59CEA9896DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC8A01B-96B2-4FBA-9A4B-59CEA9896DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC8A01B-96B2-4FBA-9A4B-59CEA9896DD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

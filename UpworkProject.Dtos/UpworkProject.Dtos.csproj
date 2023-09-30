@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\UpworkProject.Dtos\UpworkProject.Dtos.csproj" />
-  </ItemGroup>
-
 </Project>
